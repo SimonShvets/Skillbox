@@ -39,81 +39,55 @@ namespace Module_4
             Худшая прибыль в месяцах: 7, 4, 1, 5, 12
             Месяцев с положительной прибылью: 10 */
             } //Task 1 summary
-
-            Random r = new Random();
-            int[,] parametrs = new int[2,12];
-            int[] profit = new int[12];
-            string ouputFormat = "| {0, 8} | {1,17} | {2,17} | {3,17} |";
-            Console.WriteLine(ouputFormat, "Месяц", "Доход, тыс. руб.", "Расход, тыс. руб.", "Прибыль, тыс.руб.");
-            for (int i = 0; i < parametrs.GetLength(1); i++)
             {
-                Month month = (Month)i;
-                parametrs[0, i] = r.Next(1, 20) * 1000;
-                parametrs[1, i] = r.Next(1, 20) * 1000;
-                profit[i] = parametrs[0, i] - parametrs[1, i];
-                Console.WriteLine(ouputFormat, FriendlyName.GetFriendlyMonthName(month), parametrs[0, i], parametrs[1, i], profit[i]);
-            }
-            int[] unsortedProfit = new int[profit.Length];
-            Array.Copy(profit, unsortedProfit, profit.Length);
-            Array.Sort(profit);
-            int[] minValues = new int[3];
-            int minValue = profit[0];
-            minValues[0] = minValue;
-            int count = 1;
-            int index = 0;
-            while(count != 3)
-            {
-                if (profit[index] != minValue)
+                Random r = new Random();
+                int[,] parametrs = new int[2, 12];
+                int[] profit = new int[12];
+                string ouputFormat = "| {0, 8} | {1,17} | {2,17} | {3,17} |";
+                Console.WriteLine(ouputFormat, "Месяц", "Доход, тыс. руб.", "Расход, тыс. руб.", "Прибыль, тыс.руб.");
+                for (int i = 0; i < parametrs.GetLength(1); i++)
                 {
-                    minValues[count] = profit[index];
-                    minValue = profit[index];
-                    count++;
+                    Month month = (Month)i;
+                    parametrs[0, i] = r.Next(1, 20) * 1000;
+                    parametrs[1, i] = r.Next(1, 20) * 1000;
+                    profit[i] = parametrs[0, i] - parametrs[1, i];
+                    Console.WriteLine(ouputFormat, FriendlyName.GetFriendlyMonthName(month), parametrs[0, i], parametrs[1, i], profit[i]);
                 }
-                index++;
-            }
-            foreach (int i in minValues)
-            {
-                Console.WriteLine(i);
-            }
-            string badMonths = "";
-            foreach (int i in minValues)
-            {
-                for (int j = 0; j<unsortedProfit.Length; j++)
+                int[] unsortedProfit = new int[profit.Length];
+                Array.Copy(profit, unsortedProfit, profit.Length);
+                Array.Sort(profit);
+                int[] minValues = new int[3];
+                int minValue = profit[0];
+                minValues[0] = minValue;
+                int count = 1;
+                int index = 0;
+                while (count != 3)
                 {
-                    if (i == unsortedProfit[j]) badMonths += FriendlyName.GetFriendlyMonthName((Month)j) + "; ";
+                    if (profit[index] != minValue)
+                    {
+                        minValues[count] = profit[index];
+                        minValue = profit[index];
+                        count++;
+                    }
+                    index++;
                 }
-            }
-           count = 0;
-           foreach(int i in unsortedProfit)
-            {
-                if (i > 0) count++;
-            }
+                string badMonths = "";
+                foreach (int i in minValues)
+                {
+                    for (int j = 0; j < unsortedProfit.Length; j++)
+                    {
+                        if (i == unsortedProfit[j]) badMonths += FriendlyName.GetFriendlyMonthName((Month)j) + "; ";
+                    }
+                }
+                count = 0;
+                foreach (int i in unsortedProfit)
+                {
+                    if (i > 0) count++;
+                }
 
-            //int nextMinValue = profit[0];
-            //int index = 0;
-            //int count = 2;
-            //string badMonths = "";
-            //string goodMonths = "";
-            //while(count != 0)
-            //{
-            //    if(profit[index] == nextMinValue)
-            //    {
-            //        badMonths += FriendlyName.GetFriendlyMonthName((Month)Array.IndexOf(unsortedProfit, nextMinValue)) + "; ";
-            //    }
-            //    else
-            //    {
-            //        nextMinValue = profit[index];
-            //        badMonths += FriendlyName.GetFriendlyMonthName((Month)Array.IndexOf(unsortedProfit, nextMinValue)) + "; ";
-            //        count--;
-            //    }
-            //    index++;
-            //}
-            //foreach (int i in unsortedProfit)
-            //{
-            //    if (i > 0) goodMonths += FriendlyName.GetFriendlyMonthName((Month)Array.IndexOf(unsortedProfit, i)) + "; ";
-            ////}
-            Console.WriteLine($"Худшая прибыль в месяцах: {badMonths}");
-            Console.WriteLine($"Количество месяцев с положительной прибылью: {count}");
+                Console.WriteLine($"Худшая прибыль в месяцах: {badMonths}");
+                Console.WriteLine($"Количество месяцев с положительной прибылью: {count}");
+            } //Task 1
             {
                 /* Задание 2
                 Заказчику требуется приложение строящее первых N строк треугольника паскаля. N < 25
