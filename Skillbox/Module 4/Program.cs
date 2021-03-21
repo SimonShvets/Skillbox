@@ -8,38 +8,39 @@ namespace Module_4
         static void Main(string[] args)
         {
             {
-            /* Задание 1.
-            Заказчик просит вас написать приложение по учёту финансов
-            и продемонстрировать его работу.
-            Суть задачи в следующем: 
-            Руководство фирмы по 12 месяцам ведет учет расходов и поступлений средств. 
-            За год получены два массива – расходов и поступлений.
-            Определить прибыли по месяцам
-            Количество месяцев с положительной прибылью.
-            Добавить возможность вывода трех худших показателей по месяцам, с худшей прибылью, 
-            если есть несколько месяцев, в некоторых худшая прибыль совпала - вывести их все.
-            Организовать дружелюбный интерфейс взаимодействия и вывода данных на экран
+                /* Задание 1.
+                Заказчик просит вас написать приложение по учёту финансов
+                и продемонстрировать его работу.
+                Суть задачи в следующем: 
+                Руководство фирмы по 12 месяцам ведет учет расходов и поступлений средств. 
+                За год получены два массива – расходов и поступлений.
+                Определить прибыли по месяцам
+                Количество месяцев с положительной прибылью.
+                Добавить возможность вывода трех худших показателей по месяцам, с худшей прибылью, 
+                если есть несколько месяцев, в некоторых худшая прибыль совпала - вывести их все.
+                Организовать дружелюбный интерфейс взаимодействия и вывода данных на экран
 
-            Пример
-                  
-            Месяц      Доход, тыс. руб.  Расход, тыс. руб.     Прибыль, тыс. руб.
-                1              100 000             80 000                 20 000
-                2              120 000             90 000                 30 000
-                3               80 000             70 000                 10 000
-                4               70 000             70 000                      0
-                5              100 000             80 000                 20 000
-                6              200 000            120 000                 80 000
-                7              130 000            140 000                -10 000
-                8              150 000             65 000                 85 000
-                9              190 000             90 000                100 000
-               10              110 000             70 000                 40 000
-               11              150 000            120 000                 30 000
-               12              100 000             80 000                 20 000
-            
-            Худшая прибыль в месяцах: 7, 4, 1, 5, 12
-            Месяцев с положительной прибылью: 10 */
+                Пример
+
+                Месяц      Доход, тыс. руб.  Расход, тыс. руб.     Прибыль, тыс. руб.
+                    1              100 000             80 000                 20 000
+                    2              120 000             90 000                 30 000
+                    3               80 000             70 000                 10 000
+                    4               70 000             70 000                      0
+                    5              100 000             80 000                 20 000
+                    6              200 000            120 000                 80 000
+                    7              130 000            140 000                -10 000
+                    8              150 000             65 000                 85 000
+                    9              190 000             90 000                100 000
+                   10              110 000             70 000                 40 000
+                   11              150 000            120 000                 30 000
+                   12              100 000             80 000                 20 000
+
+                Худшая прибыль в месяцах: 7, 4, 1, 5, 12
+                Месяцев с положительной прибылью: 10 */
             } //Task 1 summary
             {
+                Console.WriteLine("Задание №1 - Учет финансов.");
                 Random r = new Random();
                 int[,] parametrs = new int[2, 12];
                 int[] profit = new int[12];
@@ -87,7 +88,10 @@ namespace Module_4
 
                 Console.WriteLine($"Худшая прибыль в месяцах: {badMonths}");
                 Console.WriteLine($"Количество месяцев с положительной прибылью: {count}");
-            } //Task 1
+                Console.WriteLine("Нажмите любую клавишу..");
+                Console.ReadLine();
+                Console.Clear();
+            } //Task 1:
             {
                 /* Задание 2
                 Заказчику требуется приложение строящее первых N строк треугольника паскаля. N < 25
@@ -115,8 +119,35 @@ namespace Module_4
 
                 Справка: https://ru.wikipedia.org/wiki/Треугольник_Паскаля */
             } //Task 2 summary
-
-
+            {
+                Console.WriteLine("Задание №2 - Треугольник Паскаля.");
+                Console.WriteLine("Введите число для формирования треугольника Паскаля");
+                int number = Convert.ToInt32(Console.ReadLine());
+                int[] prevArray = new int[] { 1 };
+                for (int i = 0; i < number; i++)
+                {
+                    int[] array = new int[i + 1];
+                    for (int j = 0; j < array.Length; j++)
+                    {
+                        if (j == 0) array[j] = 1;
+                        else if (j == array.Length) array[j] = 1;
+                        else if (j == array.Length - 1) array[j] = 1;
+                        else
+                        {
+                            array[j] = prevArray[j - 1] + prevArray[j];
+                        }
+                    }
+                    foreach (int k in array)
+                    {
+                        Console.Write(k + " ");
+                    }
+                    Console.WriteLine();
+                    prevArray = array;
+                }
+                Console.WriteLine("Нажмите любую клавишу..");
+                Console.ReadLine();
+                Console.Clear();
+            } //Task 2:
             {
                 /* Задание 3.1
                 Заказчику требуется приложение позволяющщее умножать математическую матрицу на число
@@ -169,6 +200,167 @@ namespace Module_4
                                  | 6 |  
                  */
             } //Task 3 summary
+            {
+                {
+                    Console.WriteLine("Задание №3.1 - Умножение матрицы на число.");
+                    Console.WriteLine("Введите количество столбцов для формирования матрицы");
+                    int column = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Введите количество строк для формирования матрицы");
+                    int row = Convert.ToInt32(Console.ReadLine());
+                    Random r = new Random();
+                    int[,] matrix = new int[row, column];
+                    Console.WriteLine("Матрица до преобразования:");
+                    for (int i = 0; i < row; i++)
+                    {
+                        for (int j = 0; j < column; j++)
+                        {
+                            matrix[i, j] = r.Next(0, 10);
+                            Console.Write("{0,3}", matrix[i, j]);
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.WriteLine("Введите множитель для матрицы");
+                    int multiplier = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Матрица поcле преобразования:");
+                    for (int i = 0; i < row; i++)
+                    {
+                        for (int j = 0; j < column; j++)
+                        {
+                            matrix[i, j] *= multiplier;
+                            Console.Write("{0,3}", matrix[i, j]);
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.WriteLine("Нажмите любую клавишу..");
+                    Console.ReadLine();
+                    Console.Clear();
+                }//Task 3.1:
+                {
+                    Console.WriteLine("Задание №3.2 - Сложение и разность двух матриц.");
+                    Console.WriteLine("Сложение и разность двух матриц возможно только при одинаковой размерности матриц.");
+                    Console.WriteLine("Введите количество столбцов для формирования матриц");
+                    int column = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Введите количество строк для формирования матриц");
+                    int row = Convert.ToInt32(Console.ReadLine());
+                    if (column == row)
+                    {
+                        Random r = new Random();
+                        int[,] matrix1 = new int[row, column];
+                        int[,] matrix2 = new int[row, column];
+                        int[,] sumMatrix = new int[row, column];
+                        int[,] diffMatrix = new int[row, column];
+                        Console.WriteLine("Матрица A:");
+                        for (int i = 0; i < row; i++)
+                        {
+                            for (int j = 0; j < column; j++)
+                            {
+                                matrix1[i, j] = r.Next(0, 10);
+                                Console.Write("{0,3}", matrix1[i, j]);
+                            }
+                            Console.WriteLine();
+                        }
+                        Console.WriteLine("Матрица B:");
+                        for (int i = 0; i < row; i++)
+                        {
+                            for (int j = 0; j < column; j++)
+                            {
+                                matrix2[i, j] = r.Next(0, 10);
+                                Console.Write("{0,3}", matrix2[i, j]);
+                            }
+                            Console.WriteLine();
+                        }
+                        Console.WriteLine("Матрица суммы:");
+                        for (int i = 0; i < row; i++)
+                        {
+                            for (int j = 0; j < column; j++)
+                            {
+                                sumMatrix[i, j] = matrix1[i, j] + matrix2[i, j];
+                                Console.Write("{0,3}", sumMatrix[i, j]);
+                            }
+                            Console.WriteLine();
+                        }
+                        Console.WriteLine("Матрица разницы:");
+                        for (int i = 0; i < row; i++)
+                        {
+                            for (int j = 0; j < column; j++)
+                            {
+                                diffMatrix[i, j] = matrix1[i, j] - matrix2[i, j];
+                                Console.Write("{0,3}", diffMatrix[i, j]);
+                            }
+                            Console.WriteLine();
+                        }
+
+                        Console.WriteLine("Нажмите любую клавишу..");
+                        Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Введенные данные не соответсвуют требованию мат. операции, работа вычислений завершена.");
+                    }
+
+                }//Task 3.2:
+                {
+                    Console.WriteLine("Задание №3.3 - Произведение двух матрицы.");
+                    Console.WriteLine("Матрицы A и B могут быть перемножены, если они совместимы в том смысле, что число столбцов матрицы A равно числу строк B.");
+                    Console.WriteLine("Введите количество столбцов для формирования матрицы А");
+                    int columnA = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Введите количество строк для формирования матрицы A");
+                    int rowA = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Введите количество столбцов для формирования матрицы B");
+                    int columnB = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Введите количество строк для формирования матрицы B");
+                    int rowB = Convert.ToInt32(Console.ReadLine());
+                    if (columnA == rowB)
+                    {
+                        Random r = new Random();
+                        int[,] matrix1 = new int[rowA, columnA];
+                        int[,] matrix2 = new int[rowB, columnB];
+                        int[,] multipliedMatrix = new int[rowA, columnB];
+                        Console.WriteLine("Матрица A:");
+                        for (int i = 0; i < rowA; i++)
+                        {
+                            for (int j = 0; j < columnA; j++)
+                            {
+                                matrix1[i, j] = r.Next(0, 10);
+                                Console.Write("{0,3}", matrix1[i, j]);
+                            }
+                            Console.WriteLine();
+                        }
+                        Console.WriteLine("Матрица B:");
+                        for (int i = 0; i < rowB; i++)
+                        {
+                            for (int j = 0; j < columnB; j++)
+                            {
+                                matrix2[i, j] = r.Next(0, 10);
+                                Console.Write("{0,3}", matrix2[i, j]);
+                            }
+                            Console.WriteLine();
+                        }
+                        Console.WriteLine("Матрица произведения:");
+                        for (int i = 0; i < rowA; i++)
+                        {
+                            for (int j = 0; j < columnB; j++)
+                            {
+                                for (int n = 0; n < columnA; n++)
+                                {
+                                    multipliedMatrix[i, j] += matrix1[i, n] * matrix2[n, j];
+                                }
+                                Console.Write("{0,3}", multipliedMatrix[i, j]);
+                            }
+                            Console.WriteLine();
+                        }
+
+                        Console.WriteLine("Нажмите любую клавишу..");
+                        Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Введенные данные не соответсвуют требованию мат. операции, работа вычислений завершена.");
+                    }
+                }//Task 3.3:
+            } //Task 3
         }
     }
 }
