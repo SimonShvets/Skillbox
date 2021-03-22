@@ -46,7 +46,7 @@ namespace Module_4
                 int[] profit = new int[12];
                 string ouputFormat = "| {0, 8} | {1,17} | {2,17} | {3,17} |";
                 Console.WriteLine(ouputFormat, "Месяц", "Доход, тыс. руб.", "Расход, тыс. руб.", "Прибыль, тыс.руб.");
-                for (int i = 0; i < parametrs.GetLength(1); i++)
+                for (int i = 0; i < 12; i++)
                 {
                     Month month = (Month)i;
                     parametrs[0, i] = r.Next(1, 20) * 1000;
@@ -54,8 +54,8 @@ namespace Module_4
                     profit[i] = parametrs[0, i] - parametrs[1, i];
                     Console.WriteLine(ouputFormat, FriendlyName.GetFriendlyMonthName(month), parametrs[0, i], parametrs[1, i], profit[i]);
                 }
-                int[] unsortedProfit = new int[profit.Length];
-                Array.Copy(profit, unsortedProfit, profit.Length);
+                int[] unsortedProfit = new int[12];
+                Array.Copy(profit, unsortedProfit, 12);
                 Array.Sort(profit);
                 int[] minValues = new int[3];
                 int minValue = profit[0];
@@ -75,7 +75,7 @@ namespace Module_4
                 string badMonths = "";
                 foreach (int i in minValues)
                 {
-                    for (int j = 0; j < unsortedProfit.Length; j++)
+                    for (int j = 0; j < 12; j++)
                     {
                         if (i == unsortedProfit[j]) badMonths += FriendlyName.GetFriendlyMonthName((Month)j) + "; ";
                     }
@@ -127,11 +127,11 @@ namespace Module_4
                 for (int i = 0; i < number; i++)
                 {
                     int[] array = new int[i + 1];
-                    for (int j = 0; j < array.Length; j++)
+                    for (int j = 0; j < i + 1; j++)
                     {
                         if (j == 0) array[j] = 1;
-                        else if (j == array.Length) array[j] = 1;
-                        else if (j == array.Length - 1) array[j] = 1;
+                        else if (j == i + 1) array[j] = 1;
+                        else if (j == i) array[j] = 1;
                         else
                         {
                             array[j] = prevArray[j - 1] + prevArray[j];
@@ -203,10 +203,10 @@ namespace Module_4
             {
                 {
                     Console.WriteLine("Задание №3.1 - Умножение матрицы на число.");
-                    Console.WriteLine("Введите количество столбцов для формирования матрицы");
-                    int column = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Введите количество строк для формирования матрицы");
                     int row = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Введите количество столбцов для формирования матрицы");
+                    int column = Convert.ToInt32(Console.ReadLine());
                     Random r = new Random();
                     int[,] matrix = new int[row, column];
                     Console.WriteLine("Матрица до преобразования:");
@@ -238,11 +238,11 @@ namespace Module_4
                 {
                     Console.WriteLine("Задание №3.2 - Сложение и разность двух матриц.");
                     Console.WriteLine("Сложение и разность двух матриц возможно только при одинаковой размерности матриц.");
-                    Console.WriteLine("Введите количество столбцов для формирования матриц");
-                    int column = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Введите количество строк для формирования матриц");
                     int row = Convert.ToInt32(Console.ReadLine());
-                    if (column == row)
+                    Console.WriteLine("Введите количество столбцов для формирования матриц");
+                    int column = Convert.ToInt32(Console.ReadLine());
+                    if (column > 0 && row > 0)
                     {
                         Random r = new Random();
                         int[,] matrix1 = new int[row, column];
@@ -279,7 +279,7 @@ namespace Module_4
                             }
                             Console.WriteLine();
                         }
-                        Console.WriteLine("Матрица разницы:");
+                        Console.WriteLine("Матрица разности:");
                         for (int i = 0; i < row; i++)
                         {
                             for (int j = 0; j < column; j++)
@@ -303,14 +303,14 @@ namespace Module_4
                 {
                     Console.WriteLine("Задание №3.3 - Произведение двух матрицы.");
                     Console.WriteLine("Матрицы A и B могут быть перемножены, если они совместимы в том смысле, что число столбцов матрицы A равно числу строк B.");
-                    Console.WriteLine("Введите количество столбцов для формирования матрицы А");
-                    int columnA = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Введите количество строк для формирования матрицы A");
                     int rowA = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Введите количество столбцов для формирования матрицы B");
-                    int columnB = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Введите количество столбцов для формирования матрицы А");
+                    int columnA = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Введите количество строк для формирования матрицы B");
                     int rowB = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Введите количество столбцов для формирования матрицы B");
+                    int columnB = Convert.ToInt32(Console.ReadLine());
                     if (columnA == rowB)
                     {
                         Random r = new Random();
