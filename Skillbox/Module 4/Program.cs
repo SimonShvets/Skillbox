@@ -203,33 +203,41 @@ namespace Module_4
             {
                 {
                     Console.WriteLine("Задание №3.1 - Умножение матрицы на число.");
+                    Console.WriteLine("Размерность матрицы строго положительна!");
                     Console.WriteLine("Введите количество строк для формирования матрицы");
                     int row = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Введите количество столбцов для формирования матрицы");
                     int column = Convert.ToInt32(Console.ReadLine());
-                    Random r = new Random();
-                    int[,] matrix = new int[row, column];
-                    Console.WriteLine("Матрица до преобразования:");
-                    for (int i = 0; i < row; i++)
+                    if(column > 0 && row > 0)
                     {
-                        for (int j = 0; j < column; j++)
+                        Random r = new Random();
+                        int[,] matrix = new int[row, column];
+                        Console.WriteLine("Матрица до преобразования:");
+                        for (int i = 0; i < row; i++)
                         {
-                            matrix[i, j] = r.Next(0, 10);
-                            Console.Write("{0,3}", matrix[i, j]);
+                            for (int j = 0; j < column; j++)
+                            {
+                                matrix[i, j] = r.Next(0, 10);
+                                Console.Write("{0,3}", matrix[i, j]);
+                            }
+                            Console.WriteLine();
                         }
-                        Console.WriteLine();
+                        Console.WriteLine("Введите множитель для матрицы");
+                        int multiplier = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Матрица поcле преобразования:");
+                        for (int i = 0; i < row; i++)
+                        {
+                            for (int j = 0; j < column; j++)
+                            {
+                                matrix[i, j] *= multiplier;
+                                Console.Write("{0,3}", matrix[i, j]);
+                            }
+                            Console.WriteLine();
+                        }
                     }
-                    Console.WriteLine("Введите множитель для матрицы");
-                    int multiplier = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Матрица поcле преобразования:");
-                    for (int i = 0; i < row; i++)
+                    else
                     {
-                        for (int j = 0; j < column; j++)
-                        {
-                            matrix[i, j] *= multiplier;
-                            Console.Write("{0,3}", matrix[i, j]);
-                        }
-                        Console.WriteLine();
+                        Console.WriteLine("Введенные данные не соответсвуют требованию мат. операции, работа вычислений завершена.");
                     }
                     Console.WriteLine("Нажмите любую клавишу..");
                     Console.ReadLine();
@@ -289,15 +297,14 @@ namespace Module_4
                             }
                             Console.WriteLine();
                         }
-
-                        Console.WriteLine("Нажмите любую клавишу..");
-                        Console.ReadLine();
-                        Console.Clear();
                     }
                     else
                     {
                         Console.WriteLine("Введенные данные не соответсвуют требованию мат. операции, работа вычислений завершена.");
                     }
+                    Console.WriteLine("Нажмите любую клавишу..");
+                    Console.ReadLine();
+                    Console.Clear();
 
                 }//Task 3.2:
                 {
@@ -311,7 +318,7 @@ namespace Module_4
                     int rowB = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Введите количество столбцов для формирования матрицы B");
                     int columnB = Convert.ToInt32(Console.ReadLine());
-                    if (columnA == rowB)
+                    if (columnA == rowB && columnA > 0 && columnB > 0 && rowA > 0 && rowB > 0)
                     {
                         Random r = new Random();
                         int[,] matrix1 = new int[rowA, columnA];
@@ -350,15 +357,14 @@ namespace Module_4
                             }
                             Console.WriteLine();
                         }
-
-                        Console.WriteLine("Нажмите любую клавишу..");
-                        Console.ReadLine();
-                        Console.Clear();
                     }
                     else
                     {
                         Console.WriteLine("Введенные данные не соответсвуют требованию мат. операции, работа вычислений завершена.");
                     }
+                    Console.WriteLine("Нажмите любую клавишу..");
+                    Console.ReadLine();
+                    Console.Clear();
                 }//Task 3.3:
             } //Task 3
         }
