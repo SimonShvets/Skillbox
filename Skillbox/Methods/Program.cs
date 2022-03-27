@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Methods
 {
@@ -9,15 +10,15 @@ namespace Methods
         private const string _separator = " ";
         static void Main(string[] args)
         {
-            Console.WriteLine("Please insert any prase separated by empty space: \" \"");
+            Console.WriteLine($"Please insert any prase separated by: \"{_separator}\"");
             var line = Console.ReadLine();
             var lines = SplitLine(line);
             WriteLines(lines);
 
             Console.WriteLine();
 
-            var reverseLines = Reverse(line);
-            WriteLines(reverseLines);
+            var reverseLine = Reverse(line);
+            Console.WriteLine(reverseLine);
         }
 
         private static IEnumerable<string> SplitLine(string line)
@@ -33,9 +34,12 @@ namespace Methods
             }
         }
 
-        private static IEnumerable<string> Reverse(string line)
+        private static string Reverse(string line)
         {
-            return SplitLine(line).Reverse();
+            var reversedLines = SplitLine(line).Reverse();
+
+            var sb = new StringBuilder();
+            return sb.AppendJoin(_separator, reversedLines).ToString();
         }
     }
 }
