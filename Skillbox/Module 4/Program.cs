@@ -1,7 +1,7 @@
 ﻿using System;
-using Module_4.Enums;
+using Arrays.Enums;
 
-namespace Module_4
+namespace Arrays
 {
     class Program
     {
