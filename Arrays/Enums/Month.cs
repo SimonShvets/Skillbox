@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Module_4.Enums
+namespace Arrays.Enums
 {
     public enum Month
     {
